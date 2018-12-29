@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>handson_tutorial</name>
+  <version>0.1.0</version>
+  <description>Tutorials for MoveIt! Day in China 2019</description>
+
+  <maintainer email="sharron.liu@intel.com">Sharron Liu</maintainer>
+  <maintainer email="yu.yan@intel.com">Yu Yan</maintainer>
+  <license>Apache License 2.0</license>
+  <url type="website">https://github.com/RoboticsYY/handson_tutorial.git</url>
+  <url type="repository">https://github.com/RoboticsYY/handson_tutorial.git</url>
+  <url type="bugtracker">https://github.com/RoboticsYY/handson_tutorial.git</url>
+  <author email="sharron.liu@intel.com">Sharron Liu</author>
+  <author email="yu.yan@intel.com">Yu Yan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <exec_depend>roscpp</exec_depend>
+
+  <export>
+    <rosdoc config="rosdoc.yaml" />
+  </export>
+
+</package>
