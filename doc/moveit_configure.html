@@ -1,0 +1,464 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. MoveIt! Congiure &mdash; handson_tutorial 0.1.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="handson_tutorial 0.1.0 documentation" href="../index.html"/>
+        <link rel="next" title="3. Motion Planning and Execution" href="motion_planning_and_execution.html"/>
+        <link rel="prev" title="1. Getting Started" href="getting_started.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> handson_tutorial
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (in dock image)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launch_docker_image.html">0. Launch Docker Image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">1. Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. MoveIt! Congiure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#start-moveit-setup-assistant">2.1 Start MoveIt! Setup Assistant:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#create-new-moveit-config-package">2.2 Create new MoveIt! config package:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#load-urdf-file">2.3 Load urdf file:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-self-collision-matrix">2.4 Generate self-collision matrix:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtual-joints">2.5 Virtual joints:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-planning-groups">2.6 Add planning groups:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-robot-poses">2.7 Add robot poses:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#label-end-effectors">2.8 Label end-effectors:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#author-information">2.9 Author information:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-configuration-files">2.10 Generate configuration files:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#set-initial-pose-to-fake-controllers-yaml">2.11 Set initial pose to fake_controllers.yaml</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#add-rvizvisualtoolsgui">4.12 Add RvizVisualToolsGui:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motion_planning_and_execution.html">3. Motion Planning and Execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pick_and_place.html">4. Pick and Place</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gazebo_execution.html">5. Gazebo Execution</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">handson_tutorial</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>2. MoveIt! Congiure</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/doc/moveit_configure.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="moveit-congiure">
+<h1>2. MoveIt! Congiure<a class="headerlink" href="#moveit-congiure" title="Permalink to this headline">¶</a></h1>
+<p>MoveIt! config package is used to bring up the MoveIt! motion planning, perception and pick place pipeline.
+If you have the <code class="docutils literal"><span class="pre">ur5_hitbot_ilc_platform_moveit_config</span></code> package already git-cloned from the <strong>Getting Started</strong> section,
+don’t change anything in this package. This is the MoveIt! config package we created previously,
+you can refer to this package when you meet error in the rest of the handson.
+Next, we will show you how to create the same config package.</p>
+<div class="section" id="start-moveit-setup-assistant">
+<h2>2.1 Start MoveIt! Setup Assistant:<a class="headerlink" href="#start-moveit-setup-assistant" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre>cd ~/ws_handson
+source devel/setup.bash
+roslaunch moveit_setup_assistant setup_assistant.launch
+</pre></div>
+</div>
+<p>The operation flow in this section will be:</p>
+<img alt="../_images/operation_flow.png" src="../_images/operation_flow.png" />
+</div>
+<div class="section" id="create-new-moveit-config-package">
+<h2>2.2 Create new MoveIt! config package:<a class="headerlink" href="#create-new-moveit-config-package" title="Permalink to this headline">¶</a></h2>
+<p>Click on the <code class="docutils literal"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">MoveIt!</span> <span class="pre">Configuration</span> <span class="pre">Package</span></code> button to on the <code class="docutils literal"><span class="pre">Start</span></code> screen:</p>
+<img alt="../_images/start_screen.png" src="../_images/start_screen.png" />
+</div>
+<div class="section" id="load-urdf-file">
+<h2>2.3 Load urdf file:<a class="headerlink" href="#load-urdf-file" title="Permalink to this headline">¶</a></h2>
+<p>Click on the <code class="docutils literal"><span class="pre">browse</span></code> button and navigate to the <code class="docutils literal"><span class="pre">ur5_hitbot_with_ilc_platform.urdf.xacro</span></code> file in the
+<code class="docutils literal"><span class="pre">moveit_handson</span></code> package. (this file gets installed in
+<code class="docutils literal"><span class="pre">~/ws_handson/src/moveit_handson/handson_description/urdf/ur5_hitbot_with_ilc_platform.urdf.xacro</span></code>.)
+Choose that file and then click <code class="docutils literal"><span class="pre">Load</span> <span class="pre">Files</span></code>. The Setup Assistant will load the files (this might take a few seconds)
+and present you with this screen:</p>
+<img alt="../_images/urdf_loaded.png" src="../_images/urdf_loaded.png" />
+</div>
+<div class="section" id="generate-self-collision-matrix">
+<h2>2.4 Generate self-collision matrix:<a class="headerlink" href="#generate-self-collision-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Click on the <code class="docutils literal"><span class="pre">Self-Collisions</span></code> pane selector on the left-hand side and click on the <code class="docutils literal"><span class="pre">Generate</span> <span class="pre">Collision</span> <span class="pre">Matrix</span></code> button.
+The Setup Assistant will work for a few second before presenting you the results of its computation in the main table.</p>
+<img alt="../_images/self_collision_1.png" src="../_images/self_collision_1.png" />
+</div>
+<div class="section" id="virtual-joints">
+<h2>2.5 Virtual joints:<a class="headerlink" href="#virtual-joints" title="Permalink to this headline">¶</a></h2>
+<p>Virtual joints are used primarily to attach the robot to the world.
+Since the UR5 robot is already attached to the platform and the platform
+is attached to the world in the loaded urdf file, there is no need to add virtual joints.</p>
+</div>
+<div class="section" id="add-planning-groups">
+<h2>2.6 Add planning groups:<a class="headerlink" href="#add-planning-groups" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Click on the <code class="docutils literal"><span class="pre">Planning-Groups</span></code> panel selector:</li>
+<li>Click on <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Group</span></code> button to add arm group:</li>
+<li>We will first add UR5 arm as a planning group:<ul>
+<li>Enter <code class="docutils literal"><span class="pre">Group</span> <span class="pre">Name</span></code> as “ur5_arm”</li>
+<li>Choose <code class="docutils literal"><span class="pre">kdl_kinematics_plugin/KDLKinematicsPlugin</span></code> as the kinematics solver.</li>
+<li>Let <code class="docutils literal"><span class="pre">Kin.</span> <span class="pre">Search</span> <span class="pre">Resolution</span></code> and <code class="docutils literal"><span class="pre">Kin.</span> <span class="pre">Search</span> <span class="pre">Timeout</span></code> stay at their default values.</li>
+</ul>
+</li>
+</ul>
+<img alt="../_images/planning_groups_1.png" src="../_images/planning_groups_1.png" />
+<ul class="simple">
+<li>Now, click on the <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Joints</span></code> button:<ul>
+<li>Choose <strong>platform_base_link_joint</strong>, <strong>shoulder_pan_joint</strong>, <strong>shoulder_lift_joint</strong>, <strong>elbow_joint</strong>,
+<strong>wrist_1_joint</strong>, <strong>wrist_2_joint</strong>, <strong>wrist_3_joint</strong> and <strong>wrist_3_link-tool0_fixed_joint</strong>
+from the left <code class="docutils literal"><span class="pre">Available</span> <span class="pre">Joints</span></code> list. Add them to the right <code class="docutils literal"><span class="pre">Selected</span> <span class="pre">Joints</span></code> list.
+Click <code class="docutils literal"><span class="pre">Save</span></code> button to save the selected group:</li>
+</ul>
+</li>
+</ul>
+<img alt="../_images/planning_groups_2.png" src="../_images/planning_groups_2.png" />
+<ul class="simple">
+<li>Now, the screen should be like this:</li>
+</ul>
+<img alt="../_images/planning_groups_3.png" src="../_images/planning_groups_3.png" />
+<ul>
+<li><p class="first">Click <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Group</span></code> button again to add the end-effector group.</p>
+<ul>
+<li><div class="first admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">you will do this using a different procedure than adding the arm</p>
+</div>
+</li>
+<li><p class="first">Enter <code class="docutils literal"><span class="pre">Group</span> <span class="pre">Name</span></code> as “hand”</p>
+</li>
+<li><p class="first">Let <code class="docutils literal"><span class="pre">Kin.</span> <span class="pre">Search</span> <span class="pre">Resolution</span></code> and <code class="docutils literal"><span class="pre">Kin.</span> <span class="pre">Search</span> <span class="pre">Timeout</span></code> stay at their default values.</p>
+<img alt="../_images/planning_groups_4.png" src="../_images/planning_groups_4.png" />
+</li>
+<li><p class="first">Click on the <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Links</span></code> button.</p>
+</li>
+<li><p class="first">Choose “hitbot_base”, “hitbot_mask”, “hitbot_finger0”, “hitbot_finger0_tip”,
+“hitbot_finger1” and “hitbot_finger1_tip”, and add them to the list of <code class="docutils literal"><span class="pre">Selected</span> <span class="pre">Links</span></code> on the right hand side.</p>
+</li>
+<li><p class="first">Click <code class="docutils literal"><span class="pre">Save</span></code></p>
+<img alt="../_images/planning_groups_5.png" src="../_images/planning_groups_5.png" />
+</li>
+<li><p class="first">Finally, it would be like this:</p>
+<img alt="../_images/planning_groups_6.png" src="../_images/planning_groups_6.png" />
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="add-robot-poses">
+<h2>2.7 Add robot poses:<a class="headerlink" href="#add-robot-poses" title="Permalink to this headline">¶</a></h2>
+<img alt="../_images/robot_poses.png" src="../_images/robot_poses.png" />
+<ul class="simple">
+<li>Click on the <code class="docutils literal"><span class="pre">Robot</span> <span class="pre">Poses</span></code> panel</li>
+<li>Click <code class="docutils literal"><span class="pre">Add</span> <span class="pre">Pose</span></code> button</li>
+<li>Set “home” as <code class="docutils literal"><span class="pre">Pose</span> <span class="pre">Name</span></code></li>
+<li>Choose “ur5_arm” as <code class="docutils literal"><span class="pre">Planning</span> <span class="pre">Group</span></code><ul>
+<li>Set “shoulder_pan_joint” as “1.57”</li>
+<li>Set “shoulder_lift_joint” as “-1.1738”</li>
+<li>Set “elbow_joint” as “1.5190”</li>
+<li>Set “wrist_1_joint” as “-1.9333”</li>
+<li>Set “wrist_2_joint” as “-1.57”</li>
+<li>Set “wrist_3_joint” as “0.0”</li>
+</ul>
+</li>
+<li>Click <code class="docutils literal"><span class="pre">Save</span></code> button to save the pose</li>
+</ul>
+</div>
+<div class="section" id="label-end-effectors">
+<h2>2.8 Label end-effectors:<a class="headerlink" href="#label-end-effectors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Click on the <code class="docutils literal"><span class="pre">End</span> <span class="pre">Effectors</span></code> panel.</li>
+<li>Click <code class="docutils literal"><span class="pre">Add</span> <span class="pre">End</span> <span class="pre">Effector</span></code>.</li>
+<li>Choose “hand” as the <code class="docutils literal"><span class="pre">End</span> <span class="pre">Effector</span> <span class="pre">Name</span></code> for the gripper.</li>
+<li>Select “hand” as the <code class="docutils literal"><span class="pre">End</span> <span class="pre">Effector</span> <span class="pre">Group</span></code>.</li>
+<li>Select “tool0” as the <code class="docutils literal"><span class="pre">Parent</span> <span class="pre">Link</span></code> for this end-effector.</li>
+<li>Leave <code class="docutils literal"><span class="pre">Parent</span> <span class="pre">Group</span></code> blank.</li>
+<li>Click <code class="docutils literal"><span class="pre">Save</span></code>.</li>
+</ul>
+<img alt="../_images/end_effectors.png" src="../_images/end_effectors.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The screens of <strong>Passive Joints</strong>, <strong>3D Perception</strong>, <strong>Simulation</strong> and <strong>ROS Control</strong> can be skipped,
+they are not necessary right now.</p>
+</div>
+<p>The passive joints are the unactuated joints of the robot,
+since UR5 doesn’t have such kind of joints, so the <code class="docutils literal"><span class="pre">Passive</span> <span class="pre">Joints</span></code> panel will be skipped.</p>
+<p>The <code class="docutils literal"><span class="pre">3D</span> <span class="pre">Perception</span></code> is used to config the parameters of octomap by using a 3D sensor,
+such as RGBD cameras, stereo cameras or laser scanners. In this handson, we will skip this.</p>
+<p>The <code class="docutils literal"><span class="pre">Simulation</span></code> will add necessary tags in the urdf file,
+so that the physics of the robot will be simulated in Gazebo.
+Since we have already added these tags manually, so this step can be skipped.</p>
+<p>Since the handson will be implemented mainly in a simulation environment.
+You can also skip the <code class="docutils literal"><span class="pre">ROS</span> <span class="pre">Control</span></code> panel, which is used to config the controller
+parameters for real robot execution.</p>
+</div>
+<div class="section" id="author-information">
+<h2>2.9 Author information:<a class="headerlink" href="#author-information" title="Permalink to this headline">¶</a></h2>
+<p>Click on the <code class="docutils literal"><span class="pre">Author</span> <span class="pre">Information</span></code> panel. Enter your name and email address.</p>
+</div>
+<div class="section" id="generate-configuration-files">
+<h2>2.10 Generate configuration files:<a class="headerlink" href="#generate-configuration-files" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Click on the Configuration Files panel.</li>
+<li>In the <code class="docutils literal"><span class="pre">Configuration</span> <span class="pre">Package</span> <span class="pre">Save</span> <span class="pre">Path</span></code>,
+browse to the file location <strong>~/ws_handson/src/moveit_handson/</strong>,
+and input <strong>handson_moveit_config</strong> as your package name.</li>
+<li>Click on the <code class="docutils literal"><span class="pre">Generate</span> <span class="pre">Package</span> <span class="pre">button</span></code>.</li>
+<li>Click <code class="docutils literal"><span class="pre">Exit</span> <span class="pre">Setup</span> <span class="pre">Assistant</span></code>.
+Find your moveit config package in <strong>~/ws_handson/src/moveit_handson/handson_moveit_config</strong>.</li>
+</ul>
+<img alt="../_images/configuration_files.png" src="../_images/configuration_files.png" />
+</div>
+<div class="section" id="set-initial-pose-to-fake-controllers-yaml">
+<h2>2.11 Set initial pose to fake_controllers.yaml<a class="headerlink" href="#set-initial-pose-to-fake-controllers-yaml" title="Permalink to this headline">¶</a></h2>
+<p>Set “home” pose as the initial pose for the simulation:
+Open <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/config/fake_controllers.yaml</strong> with any editor,
+add the following lines to the end of the file, save and close:</p>
+<div class="highlight-python"><div class="highlight"><pre>initial:
+ - group: ur5_arm
+   pose:  home
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-rvizvisualtoolsgui">
+<h2>4.12 Add RvizVisualToolsGui:<a class="headerlink" href="#add-rvizvisualtoolsgui" title="Permalink to this headline">¶</a></h2>
+<p>Open <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
+add following lines to the subitems of <code class="docutils literal"><span class="pre">Panels</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>- Class: rviz_visual_tools/RvizVisualToolsGui
+  Name: RvizVisualToolsGui
+</pre></div>
+</div>
+<p>so that it would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>Panels:
+  - Class: rviz/Displays
+    Help Height: 84
+    Name: Displays
+    Property Tree Widget:
+      Expanded: ~
+      Splitter Ratio: 0.742560029
+    Tree Height: 330
+  - Class: rviz/Help
+    Name: Help
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz_visual_tools/RvizVisualToolsGui
+    Name: RvizVisualToolsGui
+</pre></div>
+</div>
+<p>Still in <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
+add the following lines to the subitems of <code class="docutils literal"><span class="pre">Displays</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>- Class: rviz/MarkerArray
+  Enabled: true
+  Marker Topic: /rviz_visual_tools
+  Name: MarkerArray
+  Namespaces:
+    Text: true
+  Queue Size: 100
+  Value: true
+</pre></div>
+</div>
+<p>so that it would look like:</p>
+<div class="highlight-python"><div class="highlight"><pre>Visualization Manager:
+  Class: &quot;&quot;
+  Displays:
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /rviz_visual_tools
+      Name: MarkerArray
+      Namespaces:
+        Text: true
+      Queue Size: 100
+      Value: true
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+...
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="motion_planning_and_execution.html" class="btn btn-neutral float-right" title="3. Motion Planning and Execution" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting_started.html" class="btn btn-neutral" title="1. Getting Started" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Intel Corporation.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
