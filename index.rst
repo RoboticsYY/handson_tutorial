@@ -6,9 +6,9 @@ Contents:
 ---------
 .. toctree::
    :maxdepth: 2
-
-   doc/ros_kinetic_installation
-   doc/moveit_installation
+   
+   doc/prerequisite
+   doc/launch_docker_image
    doc/getting_started
    doc/moveit_configure
    doc/motion_planning_and_execution
