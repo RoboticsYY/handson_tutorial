@@ -5,6 +5,8 @@
 Bring up MoveIt! motion planning pipeline in one shell. 
 Remember to source the workspace before executing the command: ::
 
+  sudo docker exec -t -i moveit_handson bash
+  source devel/setup.bash
   roslaunch handson_moveit_config demo.launch
 
 .. note:: This command is executed from the config package just created, 
@@ -15,6 +17,8 @@ Remember to source the workspace before executing the command: ::
 
 In another shell, run the demo that makes UR5 end-effector to draw letter “X”: ::
 
+  sudo docker exec -t -i moveit_handson bash
+  source devel/setup.bash
   roslaunch handson_example draw_x.launch
 
 Press the ``Next`` button on the **RvizVisualToolsGui** to start the demo

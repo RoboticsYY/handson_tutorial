@@ -31,7 +31,6 @@
 
   
     <link rel="top" title="handson_tutorial 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="5. Gazebo Execution" href="gazebo_execution.html"/>
         <link rel="prev" title="3. Motion Planning and Execution" href="motion_planning_and_execution.html"/> 
 
   
@@ -82,13 +81,12 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (in dock image)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (Skip, exist in dock image)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="launch_docker_image.html">0. Launch Docker Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">1. Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Congiure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Configure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion_planning_and_execution.html">3. Motion Planning and Execution</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">4. Pick and Place</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo_execution.html">5. Gazebo Execution</a></li>
 </ul>
 
             
@@ -137,7 +135,9 @@
 <h1>4. Pick and Place<a class="headerlink" href="#pick-and-place" title="Permalink to this headline">¶</a></h1>
 <p>Bring up MoveIt! motion planning pipeline in one shell.
 Remember to source the workspace before executing the command:</p>
-<div class="highlight-python"><div class="highlight"><pre>roslaunch handson_moveit_config demo.launch
+<div class="highlight-python"><div class="highlight"><pre>sudo docker exec -t -i moveit_handson bash
+source devel/setup.bash
+roslaunch handson_moveit_config demo.launch
 </pre></div>
 </div>
 <div class="admonition note">
@@ -151,7 +151,9 @@ by the following command to see the result:</p>
 </div>
 <p>Run the pick and place demo, in which the UR5 robot will pick a ball
 with hitbot gripper from the platform surface and place it at another location:</p>
-<div class="highlight-python"><div class="highlight"><pre>roslaunch handson_example pick_place.launch
+<div class="highlight-python"><div class="highlight"><pre>sudo docker exec -t -i moveit_handson bash
+source devel/setup.bash
+roslaunch handson_example pick_place.launch
 </pre></div>
 </div>
 <img alt="../_images/demo_2.gif" src="../_images/demo_2.gif" />
@@ -163,8 +165,6 @@ with hitbot gripper from the platform surface and place it at another location:<
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="gazebo_execution.html" class="btn btn-neutral float-right" title="5. Gazebo Execution" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="motion_planning_and_execution.html" class="btn btn-neutral" title="3. Motion Planning and Execution" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

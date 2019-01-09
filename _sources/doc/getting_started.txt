@@ -7,7 +7,7 @@
 
 ::
 
-  cd ~/ws_handson/src
+  sudo docker exec -t -i moveit_handson bash
   catkin_make -DCMAKE_BUILD_TYPE=Release
   source devel/setup.bash
 

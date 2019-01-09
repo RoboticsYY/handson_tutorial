@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. MoveIt! Congiure &mdash; handson_tutorial 0.1.0 documentation</title>
+  <title>2. MoveIt! Configure &mdash; handson_tutorial 0.1.0 documentation</title>
   
 
   
@@ -82,10 +82,10 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (in dock image)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (Skip, exist in dock image)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="launch_docker_image.html">0. Launch Docker Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">1. Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">2. MoveIt! Congiure</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="">2. MoveIt! Configure</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#start-moveit-setup-assistant">2.1 Start MoveIt! Setup Assistant:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#create-new-moveit-config-package">2.2 Create new MoveIt! config package:</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#load-urdf-file">2.3 Load urdf file:</a></li>
@@ -102,7 +102,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="motion_planning_and_execution.html">3. Motion Planning and Execution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_and_place.html">4. Pick and Place</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo_execution.html">5. Gazebo Execution</a></li>
 </ul>
 
             
@@ -133,7 +132,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>2. MoveIt! Congiure</li>
+    <li>2. MoveIt! Configure</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -147,8 +146,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="moveit-congiure">
-<h1>2. MoveIt! Congiure<a class="headerlink" href="#moveit-congiure" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="moveit-configure">
+<h1>2. MoveIt! Configure<a class="headerlink" href="#moveit-configure" title="Permalink to this headline">¶</a></h1>
 <p>MoveIt! config package is used to bring up the MoveIt! motion planning, perception and pick place pipeline.
 If you have the <code class="docutils literal"><span class="pre">ur5_hitbot_ilc_platform_moveit_config</span></code> package already git-cloned from the <strong>Getting Started</strong> section,
 don’t change anything in this package. This is the MoveIt! config package we created previously,
@@ -156,7 +155,7 @@ you can refer to this package when you meet error in the rest of the handson.
 Next, we will show you how to create the same config package.</p>
 <div class="section" id="start-moveit-setup-assistant">
 <h2>2.1 Start MoveIt! Setup Assistant:<a class="headerlink" href="#start-moveit-setup-assistant" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>cd ~/ws_handson
+<div class="highlight-python"><div class="highlight"><pre>sudo docker exec -t -i moveit_handson bash
 source devel/setup.bash
 roslaunch moveit_setup_assistant setup_assistant.launch
 </pre></div>
@@ -166,21 +165,21 @@ roslaunch moveit_setup_assistant setup_assistant.launch
 </div>
 <div class="section" id="create-new-moveit-config-package">
 <h2>2.2 Create new MoveIt! config package:<a class="headerlink" href="#create-new-moveit-config-package" title="Permalink to this headline">¶</a></h2>
-<p>Click on the <code class="docutils literal"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">MoveIt!</span> <span class="pre">Configuration</span> <span class="pre">Package</span></code> button to on the <code class="docutils literal"><span class="pre">Start</span></code> screen:</p>
+<p>Click on the <code class="docutils literal"><span class="pre">Create</span> <span class="pre">New</span> <span class="pre">MoveIt!</span> <span class="pre">Configuration</span> <span class="pre">Package</span></code> button on the <code class="docutils literal"><span class="pre">Start</span></code> screen:</p>
 <img alt="../_images/start_screen.png" src="../_images/start_screen.png" />
 </div>
 <div class="section" id="load-urdf-file">
 <h2>2.3 Load urdf file:<a class="headerlink" href="#load-urdf-file" title="Permalink to this headline">¶</a></h2>
 <p>Click on the <code class="docutils literal"><span class="pre">browse</span></code> button and navigate to the <code class="docutils literal"><span class="pre">ur5_hitbot_with_ilc_platform.urdf.xacro</span></code> file in the
-<code class="docutils literal"><span class="pre">moveit_handson</span></code> package. (this file gets installed in
-<code class="docutils literal"><span class="pre">~/ws_handson/src/moveit_handson/handson_description/urdf/ur5_hitbot_with_ilc_platform.urdf.xacro</span></code>.)
+<code class="docutils literal"><span class="pre">handson_description</span></code> package. (this file gets installed in
+<code class="docutils literal"><span class="pre">/root/ws_handson/src/moveit_handson/handson_description/urdf/ur5_hitbot_with_ilc_platform.urdf.xacro</span></code>.)
 Choose that file and then click <code class="docutils literal"><span class="pre">Load</span> <span class="pre">Files</span></code>. The Setup Assistant will load the files (this might take a few seconds)
 and present you with this screen:</p>
 <img alt="../_images/urdf_loaded.png" src="../_images/urdf_loaded.png" />
 </div>
 <div class="section" id="generate-self-collision-matrix">
 <h2>2.4 Generate self-collision matrix:<a class="headerlink" href="#generate-self-collision-matrix" title="Permalink to this headline">¶</a></h2>
-<p>Click on the <code class="docutils literal"><span class="pre">Self-Collisions</span></code> pane selector on the left-hand side and click on the <code class="docutils literal"><span class="pre">Generate</span> <span class="pre">Collision</span> <span class="pre">Matrix</span></code> button.
+<p>Click on the <code class="docutils literal"><span class="pre">Self-Collisions</span></code> panel selector on the left-hand side and click on the <code class="docutils literal"><span class="pre">Generate</span> <span class="pre">Collision</span> <span class="pre">Matrix</span></code> button.
 The Setup Assistant will work for a few second before presenting you the results of its computation in the main table.</p>
 <img alt="../_images/self_collision_1.png" src="../_images/self_collision_1.png" />
 </div>
@@ -301,18 +300,18 @@ parameters for real robot execution.</p>
 <ul class="simple">
 <li>Click on the Configuration Files panel.</li>
 <li>In the <code class="docutils literal"><span class="pre">Configuration</span> <span class="pre">Package</span> <span class="pre">Save</span> <span class="pre">Path</span></code>,
-browse to the file location <strong>~/ws_handson/src/moveit_handson/</strong>,
+browse to the file location <strong>/root/ws_handson/src/moveit_handson</strong>,
 and input <strong>handson_moveit_config</strong> as your package name.</li>
 <li>Click on the <code class="docutils literal"><span class="pre">Generate</span> <span class="pre">Package</span> <span class="pre">button</span></code>.</li>
 <li>Click <code class="docutils literal"><span class="pre">Exit</span> <span class="pre">Setup</span> <span class="pre">Assistant</span></code>.
-Find your moveit config package in <strong>~/ws_handson/src/moveit_handson/handson_moveit_config</strong>.</li>
+Find your moveit config package in <strong>/root/ws_handson/src/moveit_handson/handson_moveit_config</strong>.</li>
 </ul>
 <img alt="../_images/configuration_files.png" src="../_images/configuration_files.png" />
 </div>
 <div class="section" id="set-initial-pose-to-fake-controllers-yaml">
 <h2>2.11 Set initial pose to fake_controllers.yaml<a class="headerlink" href="#set-initial-pose-to-fake-controllers-yaml" title="Permalink to this headline">¶</a></h2>
 <p>Set “home” pose as the initial pose for the simulation:
-Open <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/config/fake_controllers.yaml</strong> with any editor,
+Open <strong>/root/ws_handson/src/moveit_handson/handson_moveit_config/config/fake_controllers.yaml</strong> with any editor,
 add the following lines to the end of the file, save and close:</p>
 <div class="highlight-python"><div class="highlight"><pre>initial:
  - group: ur5_arm
@@ -322,7 +321,7 @@ add the following lines to the end of the file, save and close:</p>
 </div>
 <div class="section" id="add-rvizvisualtoolsgui">
 <h2>4.12 Add RvizVisualToolsGui:<a class="headerlink" href="#add-rvizvisualtoolsgui" title="Permalink to this headline">¶</a></h2>
-<p>Open <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
+<p>Open <strong>/root/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
 add following lines to the subitems of <code class="docutils literal"><span class="pre">Panels</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>- Class: rviz_visual_tools/RvizVisualToolsGui
   Name: RvizVisualToolsGui
@@ -348,7 +347,7 @@ add following lines to the subitems of <code class="docutils literal"><span clas
     Name: RvizVisualToolsGui
 </pre></div>
 </div>
-<p>Still in <strong>~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
+<p>Still in <strong>/root/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz</strong>,
 add the following lines to the subitems of <code class="docutils literal"><span class="pre">Displays</span></code>:</p>
 <div class="highlight-python"><div class="highlight"><pre>- Class: rviz/MarkerArray
   Enabled: true

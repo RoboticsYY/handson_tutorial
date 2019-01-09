@@ -31,7 +31,7 @@
 
   
     <link rel="top" title="handson_tutorial 0.1.0 documentation" href="../index.html"/>
-        <link rel="next" title="2. MoveIt! Congiure" href="moveit_configure.html"/>
+        <link rel="next" title="2. MoveIt! Configure" href="moveit_configure.html"/>
         <link rel="prev" title="0. Launch Docker Image" href="launch_docker_image.html"/> 
 
   
@@ -82,16 +82,15 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (in dock image)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (Skip, exist in dock image)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="launch_docker_image.html">0. Launch Docker Image</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">1. Getting Started</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#setup-the-handson-code">1.1 Setup the handson code:</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Congiure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Configure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion_planning_and_execution.html">3. Motion Planning and Execution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_and_place.html">4. Pick and Place</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo_execution.html">5. Gazebo Execution</a></li>
 </ul>
 
             
@@ -140,7 +139,7 @@
 <h1>1. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="setup-the-handson-code">
 <h2>1.1 Setup the handson code:<a class="headerlink" href="#setup-the-handson-code" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>cd ~/ws_handson/src
+<div class="highlight-python"><div class="highlight"><pre>sudo docker exec -t -i moveit_handson bash
 catkin_make -DCMAKE_BUILD_TYPE=Release
 source devel/setup.bash
 </pre></div>
@@ -161,7 +160,7 @@ source devel/setup.bash
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="moveit_configure.html" class="btn btn-neutral float-right" title="2. MoveIt! Congiure" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="moveit_configure.html" class="btn btn-neutral float-right" title="2. MoveIt! Configure" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="launch_docker_image.html" class="btn btn-neutral" title="0. Launch Docker Image" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>

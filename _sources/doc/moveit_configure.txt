@@ -1,5 +1,5 @@
 ====================
-2. MoveIt! Congiure
+2. MoveIt! Configure
 ====================
 
 MoveIt! config package is used to bring up the MoveIt! motion planning, perception and pick place pipeline. 
@@ -13,7 +13,7 @@ Next, we will show you how to create the same config package.
 
 ::
 
-  cd ~/ws_handson
+  sudo docker exec -t -i moveit_handson bash
   source devel/setup.bash
   roslaunch moveit_setup_assistant setup_assistant.launch
 
@@ -24,7 +24,7 @@ The operation flow in this section will be:
 2.2 Create new MoveIt! config package:
 ----------------------------------------
 
-Click on the ``Create New MoveIt! Configuration Package`` button to on the ``Start`` screen:
+Click on the ``Create New MoveIt! Configuration Package`` button on the ``Start`` screen:
 
 .. image:: ../_static/start_screen.png
 
@@ -33,8 +33,8 @@ Click on the ``Create New MoveIt! Configuration Package`` button to on the ``Sta
 --------------------
 
 Click on the ``browse`` button and navigate to the ``ur5_hitbot_with_ilc_platform.urdf.xacro`` file in the 
-``moveit_handson`` package. (this file gets installed in
-``~/ws_handson/src/moveit_handson/handson_description/urdf/ur5_hitbot_with_ilc_platform.urdf.xacro``.) 
+``handson_description`` package. (this file gets installed in
+``/root/ws_handson/src/moveit_handson/handson_description/urdf/ur5_hitbot_with_ilc_platform.urdf.xacro``.) 
 Choose that file and then click ``Load Files``. The Setup Assistant will load the files (this might take a few seconds) 
 and present you with this screen:
 
@@ -43,7 +43,7 @@ and present you with this screen:
 2.4 Generate self-collision matrix:
 ------------------------------------
 
-Click on the ``Self-Collisions`` pane selector on the left-hand side and click on the ``Generate Collision Matrix`` button. 
+Click on the ``Self-Collisions`` panel selector on the left-hand side and click on the ``Generate Collision Matrix`` button. 
 The Setup Assistant will work for a few second before presenting you the results of its computation in the main table.
 
 .. image:: ../_static/self_collision_1.png
@@ -61,7 +61,6 @@ is attached to the world in the loaded urdf file, there is no need to add virtua
 * Click on the ``Planning-Groups`` panel selector:
 
 * Click on ``Add Group`` button to add arm group:
-
 
 * We will first add UR5 arm as a planning group:
 
@@ -163,11 +162,11 @@ Click on the ``Author Information`` panel. Enter your name and email address.
 
 * Click on the Configuration Files panel.
 * In the ``Configuration Package Save Path``, 
-  browse to the file location **~/ws_handson/src/moveit_handson/**, 
+  browse to the file location **/root/ws_handson/src/moveit_handson**, 
   and input **handson_moveit_config** as your package name. 
 * Click on the ``Generate Package button``.
 * Click ``Exit Setup Assistant``. 
-  Find your moveit config package in **~/ws_handson/src/moveit_handson/handson_moveit_config**.
+  Find your moveit config package in **/root/ws_handson/src/moveit_handson/handson_moveit_config**.
 
 .. image:: ../_static/configuration_files.png
 
@@ -175,7 +174,7 @@ Click on the ``Author Information`` panel. Enter your name and email address.
 ------------------------------------------------
 
 Set “home” pose as the initial pose for the simulation:
-Open **~/ws_handson/src/moveit_handson/handson_moveit_config/config/fake_controllers.yaml** with any editor, 
+Open **/root/ws_handson/src/moveit_handson/handson_moveit_config/config/fake_controllers.yaml** with any editor, 
 add the following lines to the end of the file, save and close: ::
 
   initial:
@@ -185,7 +184,7 @@ add the following lines to the end of the file, save and close: ::
 4.12 Add RvizVisualToolsGui:
 ------------------------------
 
-Open **~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz**, 
+Open **/root/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz**, 
 add following lines to the subitems of ``Panels``: ::
 
   - Class: rviz_visual_tools/RvizVisualToolsGui
@@ -211,7 +210,7 @@ so that it would look like: ::
     - Class: rviz_visual_tools/RvizVisualToolsGui
       Name: RvizVisualToolsGui
 
-Still in **~/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz**, 
+Still in **/root/ws_handson/src/moveit_handson/handson_moveit_config/launch/moveit.rviz**, 
 add the following lines to the subitems of ``Displays``: ::
 
   - Class: rviz/MarkerArray
@@ -251,4 +250,3 @@ so that it would look like: ::
           Y: 0
           Z: 0
   ...
-

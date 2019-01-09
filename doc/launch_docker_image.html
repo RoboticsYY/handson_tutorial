@@ -32,7 +32,7 @@
   
     <link rel="top" title="handson_tutorial 0.1.0 documentation" href="../index.html"/>
         <link rel="next" title="1. Getting Started" href="getting_started.html"/>
-        <link rel="prev" title="Prerequisite (in dock image)" href="prerequisite.html"/> 
+        <link rel="prev" title="Prerequisite (Skip, exist in dock image)" href="prerequisite.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -82,13 +82,12 @@
             
             
                 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (in dock image)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prerequisite.html">Prerequisite (Skip, exist in dock image)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">0. Launch Docker Image</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">1. Getting Started</a></li>
-<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Congiure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="moveit_configure.html">2. MoveIt! Configure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="motion_planning_and_execution.html">3. Motion Planning and Execution</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pick_and_place.html">4. Pick and Place</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gazebo_execution.html">5. Gazebo Execution</a></li>
 </ul>
 
             
@@ -135,6 +134,60 @@
             
   <div class="section" id="launch-docker-image">
 <h1>0. Launch Docker Image<a class="headerlink" href="#launch-docker-image" title="Permalink to this headline">¶</a></h1>
+<p>Please follow the command below to install and update docker:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt update &amp;&amp; sudo apt install -y wget
+mkdir -p ~/code/ &amp;&amp; cd ~/code
+
+wget https://raw.githubusercontent.com/RoboticsYY/moveit_handson/master/docker/install_docker.sh
+wget https://raw.githubusercontent.com/RoboticsYY/moveit_handson/master/docker/setup_docker_display.sh
+
+chmod +x install_docker.sh
+./install_docker.sh
+</pre></div>
+</div>
+<p>If you have a laptop we provided, you can skip this step.
+If you have a USB stick we provided, the stick contains the handson docker image <code class="docutils literal"><span class="pre">moveit_handson_demo.tar.tgz</span></code>.
+Copy the image to the local disk at first, then please follow the description below
+to decompress and load the image:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo apt update &amp;&amp; sudo apt install -y tar
+tar -zxvf moveit_handson_demo.tar.tgz
+sudo docker load &lt; moveit_handson_demo.tar
+</pre></div>
+</div>
+<p>Please refer below command to verify the docker image created successfully on the disk. Run in shell:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo docker images
+</pre></div>
+</div>
+<p>It should show the following information:</p>
+<div class="highlight-python"><div class="highlight"><pre>REPOSITORY      TAG                  IMAGE ID            CREATED             SIZE
+intel/kinetic   moveit_handson_demo  6643cc4db2e5        5 hours ago         3.47GB
+</pre></div>
+</div>
+<p>Run following commands to set the operating environment first
+so that x window can pop up within the docker container:</p>
+<div class="highlight-python"><div class="highlight"><pre>cd ~/code
+chmod +x setup_docker_display.sh
+./setup_docker_display.sh
+sudo docker run -t -i --rm -v /tmp/.X11-unix:/tmp/.X11-unix:rw -v /tmp/.docker.xauth:/tmp/.docker.xauth:rw -e XAUTHORITY=/tmp/.docker.xauth -e DISPLAY --name moveit_handson intel/kinetic:moveit_handson_demo bash
+</pre></div>
+</div>
+<p>Run the following command to open multiple container terminals:</p>
+<div class="highlight-python"><div class="highlight"><pre>sudo docker exec -t -i moveit_handson bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want more information on how to use docker,
+please see the article here for more information: <a class="reference external" href="https://docs.docker.com/install/">https://docs.docker.com/install/</a></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>If you don’t have a USB stick, you can install the
+docker image with the following command:</p>
+<div class="last highlight-python"><div class="highlight"><pre>sudo docker pull congliu0913/moveit_handson_demo
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -147,7 +200,7 @@
         <a href="getting_started.html" class="btn btn-neutral float-right" title="1. Getting Started" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="prerequisite.html" class="btn btn-neutral" title="Prerequisite (in dock image)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="prerequisite.html" class="btn btn-neutral" title="Prerequisite (Skip, exist in dock image)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
