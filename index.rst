@@ -13,4 +13,3 @@ Contents:
    doc/moveit_configure
    doc/motion_planning_and_execution
    doc/pick_and_place
-   doc/gazebo_execution

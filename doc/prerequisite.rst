@@ -1,6 +1,9 @@
-=============================
-Prerequisite (in dock image)
-=============================
+=========================================
+Prerequisite (Skip, exist in dock image)
+=========================================
+
+The installation and environment configuration in this section are already included 
+in the docker image we provided. You can skip this section.
 
 - Ubuntu 16.04
 - ROS Kinetic desktop full http://wiki.ros.org/kinetic/Installation/Ubuntu
